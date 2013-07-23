@@ -1,0 +1,121 @@
+/*
+Theme Name: 	Flagship Sub-site
+Description: 	For subsites of krieger.jhu.edu that require the global navigation (ie. DURA, Woodrow Wilson, SDS, etc.)
+Author: 		Cara Peckens
+Author URI: 	http://krieger.jhu.edu/communications/web
+Template: 		ksas_flagship
+Version: 		1.0
+*/
+
+body.home h1, body.home h2, body.home h3, body.home h4, .isotope h3 {
+	color: #3478b6;
+}
+
+ul.nav li:before {
+	content: "\e010";
+	font-family:  'flagship-icon';
+	color: #999;
+	margin-right: 10px;
+	vertical-align: middle;
+}
+
+ul.nav li ul li:before {
+	content: "\e010";
+	font-family:  'flagship-icon';
+	color: #999;
+	margin-right: 10px;
+	vertical-align: middle;
+}
+
+.links_list a {
+	color: #333;
+}
+
+.links_list ul {
+	margin-left: 20px;
+}
+
+span.attribute {
+	margin-right: 25px;
+}
+
+#caption {
+	min-height: 425px;
+	position: absolute;
+	top:0;
+}
+
+.slide summary {
+	background: rgb(0,0,0);
+	background: rgba(0,0,0,.9);
+}
+
+.slide h6 {
+	color: #dbb003;
+	font-size: 100%;
+}
+
+.orbit div.orbit-slide {
+	left:0 !important;
+}
+
+.middle {
+	vertical-align: middle;
+	margin-top: 45%;
+}
+
+body.sub-site .orbit-wrapper {
+	-webkit-border-top-right-radius: 	10px;
+	-moz-border-radius-topright: 		10px;
+	border-top-right-radius: 			10px;
+	-webkit-border-top-left-radius: 	10px;
+	-moz-border-radius-topleft: 		10px;
+	border-top-left-radius: 			10px;
+	min-height: 35px;
+}
+
+section ul {
+	margin-left: 50px;
+}
+
+section ul ul{
+	margin-left: 25px;
+}
+
+#directory {
+	margin-left: 0;
+}
+
+#directory p {
+	margin-top: 15px;
+}
+
+section .panel ul {
+	margin-left: 0;
+}
+
+ul.breadcrumbs {
+	background: none;
+	padding:0;
+	border:none;
+}
+
+ul.breadcrumbs a{
+	color: #666;
+}
+
+
+.lt-ie9 .offset-top {
+	margin-top: 0px !important;
+}
+.offset-gutter {
+	margin-right: -16px;
+}
+
+#slider {
+	float:none;
+}
+
+.textwidget {
+	padding: 0px 15px 0 25px;
+}
