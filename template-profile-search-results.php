@@ -9,20 +9,17 @@ Template Name: Research Profile Search Results
 <?php locate_template('parts-nav-sidebar.php', true, false); ?>	
 	<div class="eight columns pull-four wrapper radius-left offset-topgutter">
 		
-		<?php if(empty($_POST['keyword']) && empty($_POST['affiliation'])) {
-					$query_args = array(
-					'post_type' => 'profile',
-					'posts_per_page' => '25',
-					'paged' => $paged );
-			}
-			
-			elseif(empty($_POST['keyword']) == false && empty($_POST['affiliation']) == false) {
-					$keyword = $_POST['keyword'];
-					$query_args = array(
-					'post_type' => 'profile',
-					'posts_per_page' => '25',
-					's' => $keyword,
-					'tax_query' => array(
+		<?php if(empty($_POST['keyword']) == false) {
+			$keyword = $_POST['keyword'];
+			$keyword_query = array('s' => $keyword); }
+		else {
+			$keyword_query = array();
+		}
+		
+		if(empty($_POST['affiliation']) == false) {
+			$affiliation = $_POST['affiliation'];
+			$affiliation_query = array(
+			'tax_query' => array(
 						'relation' => 'OR',
 						array(
 						'taxonomy' => 'academicdepartment',
@@ -32,52 +29,48 @@ Template Name: Research Profile Search Results
 						array(
 						'taxonomy' => 'affiliation',
 						'field' => 'slug',
-						'terms' => $affiliation,
-						)),
-					'paged' => $paged );
+						'terms' => $affiliation
+						))
+			);
 			}
+		else {
+			$affiliation_query = array();
+		}
+		
+		if(empty($_POST['award']) == false) {
+			$year = $_POST['award'];
+			$year_query = array(
+				'meta_query' => array(
+						array(
+							'key' => 'ecpt_class_year',
+							'value' => $year,
+						))); }
+		else {
+			$year_query = array();
+		}
+		
+		$standard_args = array(
+					'post_type' => 'profile',
+					'posts_per_page' => '25',
+					'post_status'=>'publish',
+					'paged' => $paged,
+					);
+		$query_args = array_merge($standard_args, $affiliation_query, $year_query, $keyword_query); 
 			
-			elseif (empty($_POST['keyword']) == false) { 
-					$keyword = $_POST['keyword'];
-					$query_args = array(
-					'post_type' => 'profile',
-					'posts_per_page' => '25',
-					's' => $keyword,
-					'paged' => $paged
-					);}
-					
-			elseif (empty($_POST['affiliation']) == false) { 
-			  		$affiliation = $_POST['affiliation'];
-			  		$query_args = array(
-					'post_type' => 'profile',
-					'posts_per_page' => '25',
-					'tax_query' => array(
-						'relation' => 'OR',
-						array(
-						'taxonomy' => 'academicdepartment',
-						'field' => 'slug',
-						'terms' => $affiliation,
-						),
-						array(
-						'taxonomy' => 'affiliation',
-						'field' => 'slug',
-						'terms' => $affiliation,
-						)),
-					'paged' => $paged
-					); } 
 
 			$paged = (get_query_var('paged')) ? (int) get_query_var('paged') : 1;
 			$research_search_results_query = new WP_Query($query_args);  	?>
 					
 		<section>
 			<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+			
 				<h2><?php the_title();?></h2>
 				<fieldset>
 					<form method="post" action="<?php echo site_url('/results'); ?>">
 						<div class="twelve columns">
 						    <input type="text" name="keyword" placeholder="Search by name or keyword" />
 						    <label class="bold inline">Affiliation:</label>
-						    <select name="affiliation" class="inline" style="width: 70%;">
+						    <select name="affiliation" class="inline" style="width: 50%;">
 						    <option value="">Any Affiliation</option>
 						    <?php $taxonomies = array('academicdepartment', 'affiliation'); 
 						    $terms = get_terms($taxonomies, array(
@@ -87,7 +80,15 @@ Template Name: Research Profile Search Results
 										echo '<option value="' . $term->slug . '">' . $term->name . '</option>';
 				        
 										} ?>
-						    </select> 
+						    </select>
+									    <select name="award" class="inline" style="width: 25%;">
+									    <option value="">Any Year</option>
+									    	<?php $award_years = get_meta_values('ecpt_class_year');
+									    	echo $award_years;
+									    		foreach ($award_years as $award_year) {
+										    		echo '<option value"' . $award_year . '">' . $award_year . '</option>';
+									    		} ?>
+									    </select>
 						    <input type="submit" class="icon-search" value="Search" />
 						</div>
 					</form>

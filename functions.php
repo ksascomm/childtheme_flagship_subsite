@@ -49,4 +49,50 @@ function delete_subsite_transients($post_id) {
 	}
 }
 	add_action('save_post','delete_subsite_transients'); 
+	
+function get_meta_values( $key = '', $type = 'profile', $status = 'publish' ) {
+    global $wpdb;
+    if( empty( $key ) )
+        return;
+    $r = $wpdb->get_col( $wpdb->prepare( "
+        SELECT DISTINCT pm.meta_value FROM {$wpdb->postmeta} pm
+        LEFT JOIN {$wpdb->posts} p ON p.ID = pm.post_id
+        WHERE pm.meta_key = '%s' 
+        AND p.post_status = '%s' 
+        AND p.post_type = '%s'
+        ORDER BY pm.meta_value DESC
+    ", $key, $status, $type ) );
+    return $r;
+}
+
+add_filter('posts_join', 'profile_alpha_join' );
+function profile_alpha_join($wp_join)
+{
+	if(is_page_template('template-profile-index.php') || is_page_template('template-profile-search-results.php')) {
+		global $wpdb;
+		$wp_join .= " LEFT JOIN (
+				SELECT DISTINCT post_id,
+				CASE WHEN meta_key = 'ecpt_award_alpha' THEN meta_value END AS ecpt_award_alpha
+				FROM $wpdb->postmeta
+				WHERE meta_key = 'ecpt_award_alpha') AS DD
+				ON $wpdb->posts.ID = DD.post_id
+				LEFT JOIN (
+				SELECT DISTINCT post_id,
+				CASE WHEN meta_key = 'ecpt_class_year' THEN meta_value END AS ecpt_class_year
+				FROM $wpdb->postmeta
+				WHERE meta_key = 'ecpt_class_year') AS EE
+				ON DD.post_id = EE.post_id
+				"; 
+	}
+	return ($wp_join);
+}	
+
+add_filter('posts_orderby', 'profile_index_order' );
+function profile_index_order( $orderby )
+{
+	if(is_page_template('template-profile-index.php') || is_page_template('template-profile-search-results.php')) {
+			$orderby = "EE.ecpt_class_year DESC, DD.ecpt_award_alpha ASC";
+	}
+ 	return $orderby;
+}
 ?>

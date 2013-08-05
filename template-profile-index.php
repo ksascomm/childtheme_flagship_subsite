@@ -11,7 +11,8 @@ $paged = (get_query_var('paged')) ? (int) get_query_var('paged') : 1;
 				$research_profile_index_query = new WP_Query(array(
 					'post_type' => 'profile',
 					'posts_per_page' => '25',
-					'paged' => $paged
+					'post_status'=>'publish',
+					'paged' => $paged,
 					)); 
 					set_transient( 'research_profile_index_query_' . $paged, $research_profile_index_query, 2592000 );
 			} 	?>
@@ -30,7 +31,7 @@ $paged = (get_query_var('paged')) ? (int) get_query_var('paged') : 1;
 									<div class="twelve columns">
 									    <input type="text" name="keyword" placeholder="Search by name or keyword" />
 									    <label class="bold inline">Affiliation:</label>
-									    <select name="affiliation" class="inline" style="width: 70%;">
+									    <select name="affiliation" class="inline" style="width: 50%;">
 									    <option value="">Any Affiliation</option>
 									    <?php $taxonomies = array('academicdepartment', 'affiliation'); 
 									    $terms = get_terms($taxonomies, array(
@@ -41,6 +42,14 @@ $paged = (get_query_var('paged')) ? (int) get_query_var('paged') : 1;
 							        
 													} ?>
 									    </select> 
+									    <select name="award" class="inline" style="width: 25%;">
+									    <option value="">Any Year</option>
+									    	<?php $award_years = get_meta_values('ecpt_class_year');
+									    	echo $award_years;
+									    		foreach ($award_years as $award_year) {
+										    		echo '<option value"' . $award_year . '">' . $award_year . '</option>';
+									    		} ?>
+									    </select>
 									    <input type="submit" class="icon-search" value="Search" />
 									</div>
 								</form>
