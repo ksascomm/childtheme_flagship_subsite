@@ -26,7 +26,7 @@
 			'after_widget'  => '</div>',
 			'before_title'  => '<div class="blue_bg widget_title"><h5 class="white">',
 			'after_title'   => '</h5></div>' 
-			));
+		));
 
 function delete_subsite_transients($post_id) {
 	global $post;

@@ -36,7 +36,9 @@
   <![endif]-->
   <?php include_once("parts-analytics.php") ?> 
 </head>
-<body class="<?php echo $theme_option['flagship_sub_parent_id']; ?> sub-site">
+<?php global $blog_id;
+	$site_id = $blog_id; ?>
+<body class="<?php echo $theme_option['flagship_sub_parent_id']; ?> sub-site site-<?php echo $site_id; ?> ">
 	<header>
 		<div class="row show-for-small">
 			<div class="three columns centered">

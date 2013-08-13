@@ -27,6 +27,17 @@ ul.nav li ul li:before {
 	vertical-align: middle;
 }
 
+ul.nav li ul.sub-menu {
+	list-style: none;
+	margin-left: 0;
+}
+
+body.sub-site ul.nav li ul li {
+	border-top:none;
+	padding-left: 26px;
+	padding-bottom: 0px;
+}
+
 .links_list a {
 	color: #333;
 }
@@ -72,6 +83,7 @@ body.sub-site .orbit-wrapper {
 	-moz-border-radius-topleft: 		10px;
 	border-top-left-radius: 			10px;
 	min-height: 35px;
+	height: 400px !important;
 }
 
 section ul {
@@ -118,4 +130,28 @@ ul.breadcrumbs a{
 
 .textwidget {
 	padding: 0px 15px 0 25px;
+}
+
+.widget_title {
+	padding: 10px 0;
+	margin-bottom: 15px;
+	background-color: #3478b6;
+}
+
+.widget_title h5 {
+	color: #FFF;
+}
+
+#sidebar h5 {
+	padding-left: 20px;
+	margin-top: 0;
+	margin-bottom:0;
+}
+
+.panel.callout a {
+	color:#663333;
+}
+
+body.site-25 .slide h6.yellow {
+	display: none;
 }
