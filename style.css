@@ -13,7 +13,7 @@ body.home h1, body.home h2, body.home h3, body.home h4, .isotope h3 {
 
 ul.nav li:before {
 	content: "\e010";
-	font-family:  'flagship-icon';
+	font-family:  'flagship';
 	color: #999;
 	margin-right: 10px;
 	vertical-align: middle;
@@ -21,7 +21,7 @@ ul.nav li:before {
 
 ul.nav li ul li:before {
 	content: "\e010";
-	font-family:  'flagship-icon';
+	font-family:  'flagship';
 	color: #999;
 	margin-right: 10px;
 	vertical-align: middle;
