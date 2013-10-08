@@ -4,7 +4,7 @@ Description: 	For subsites of krieger.jhu.edu that require the global navigation
 Author: 		Cara Peckens
 Author URI: 	http://krieger.jhu.edu/communications/web
 Template: 		ksas_flagship
-Version: 		1.0
+Version: 		1.1
 */
 
 body.home h1, body.home h2, body.home h3, body.home h4, .isotope h3 {
@@ -154,4 +154,11 @@ ul.breadcrumbs a{
 
 body.site-25 .slide h6.yellow {
 	display: none;
+}
+
+@media print {
+	header,
+	footer {
+		display: none;
+	}
 }
