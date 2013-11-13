@@ -156,6 +156,17 @@ body.site-25 .slide h6.yellow {
 	display: none;
 }
 
+body.site-18 .with_frm_style p.submit {
+	display: none;
+}
+
+.content img {
+	margin-right: 25px;
+}
+.wp-post-image {
+	margin-bottom: 10px;
+}
+
 @media print {
 	header,
 	footer {
