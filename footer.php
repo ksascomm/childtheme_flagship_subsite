@@ -100,4 +100,4 @@
         });
    });
    </script>
-<?php } ?>
+<?php } wp_footer(); ?>

@@ -160,6 +160,11 @@ body.site-18 .with_frm_style p.submit {
 	display: none;
 }
 
+body.site-18 #frm_form_20_container p.submit {
+	display: block !important;
+}
+
+
 .content img {
 	margin-right: 25px;
 }
