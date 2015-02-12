@@ -35,7 +35,7 @@
 			<?php endif; ?>
 		</div>
 		<div class="row">
-			<?php if ( has_post_thumbnail() ) { the_post_thumbnail('medium', array('class' => 'floatleft')); } ?>
+			<?php if ( has_post_thumbnail() ) { the_post_thumbnail('slider', array('class' => 'floatleft')); } ?>
 			<h5>Project Description</h5>
 			<?php the_content(); ?>
 		</div>

@@ -1,0 +1,26 @@
+{
+    "name": "ksascomm/ksas_flagship_subsite",
+    "type": "wordpress-theme",
+    "license": "GPL2",
+  	"description": "For subsites of krieger.jhu.edu that require the global navigation (ie. DURA, Woodrow Wilson, SDS, etc.)",
+  	"homepage": "http://github.com/ksascomm/childtheme_flagship_subsite",
+  	"authors": [
+      {
+      "name": "Tim Gelles",
+      "email": "ksasweb@jhu.edu",
+      "homepage": "http://krieger.jhu.edu"
+      }
+    ],
+    "keywords": [
+      "wordpress"
+    ],
+  "support": {
+    "issues": "http://krieger.jhu.edu"
+  },
+  "require": {
+        "composer/installers": "~1.0"
+    },
+  "replace": {
+        "cpeckens/childtheme_flagship_subsite": "1.0.*"
+    }
+}
